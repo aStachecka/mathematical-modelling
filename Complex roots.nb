@@ -1,0 +1,442 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     18253,        434]
+NotebookOptionsPosition[     16752,        403]
+NotebookOutlinePosition[     17153,        419]
+CellTagsIndexPosition[     17110,        416]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[StyleBox["Mathematical modelling and computer simulations in \
+theory and practice",
+ FontSize->36]], "Title",
+ CellChangeTimes->{{3.9391109970047283`*^9, 
+  3.9391110119282494`*^9}},ExpressionUUID->"e286ff35-16cf-e84c-b0ee-\
+dbd39c222cca"],
+
+Cell[TextData[{
+ StyleBox["Project 1\n",
+  FontSize->18],
+ StyleBox["Aleksandra Stachecka",
+  FontSize->18,
+  FontWeight->"Bold"]
+}], "Subtitle",
+ CellChangeTimes->{{3.9391110240392914`*^9, 3.93911102533461*^9}, {
+  3.939111067579111*^9, 
+  3.939111070856367*^9}},ExpressionUUID->"ef8d7383-78a7-e14e-bafb-\
+32bf9687c682"],
+
+Cell["Title: Complex roots", "Subtitle",
+ CellChangeTimes->{{3.9391110509898796`*^9, 
+  3.9391110583806973`*^9}},ExpressionUUID->"73ef0854-bc84-7042-a645-\
+006315ce4af7"],
+
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.939111878123741*^9, 3.939111908112341*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"890c2c28-398d-864c-bbfe-8b1a1ce9a577"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"complexRoots", "[", 
+   RowBox[{"z_", ",", "n_Integer"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "modulus", ",", "argument", ",", "radius", ",", "roots", ",", 
+      "rootPoints"}], "}"}], ",", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{"calculating", " ", "|", "z", "|"}], " ", "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"modulus", " ", "=", " ", 
+      RowBox[{"Abs", "[", "z", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"calculating", " ", "\[CurlyPhi]"}], " ", "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"argument", "=", 
+      RowBox[{"Arg", "[", "z", "]"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "computing", " ", "the", " ", "radius", " ", "of", " ", "the", " ", 
+       "circle", " ", "on", " ", "which", " ", "the", " ", "roots", " ", 
+       "lie"}], " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"radius", "=", 
+      RowBox[{"Power", "[", 
+       RowBox[{"modulus", ",", 
+        RowBox[{"1", "/", "n"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"calculating", " ", "the", " ", "n", " ", "roots"}], " ", 
+      "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"roots", " ", "=", " ", 
+      RowBox[{"Table", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"radius", "*", 
+         RowBox[{"Exp", "[", 
+          RowBox[{"I", "*", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"argument", "+", 
+              RowBox[{"2", "*", "Pi", "*", "k"}]}], ")"}], "/", "n"}]}], 
+          "]"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "0", ",", 
+          RowBox[{"n", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "converting", " ", "roots", " ", "to", " ", "points", " ", "for", " ", 
+       "plotting"}], " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"rootPoints", "=", 
+      RowBox[{"ReIm", "/@", "roots"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", "visualization", " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"frames", "=", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Graphics", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Circle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0"}], "}"}], ",", "radius"}], "]"}], ",", 
+            RowBox[{"(*", 
+             RowBox[{"circle", " ", "representing", " ", "boundary"}], "*)"}],
+             "\[IndentingNewLine]", "Red", ",", 
+            RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Point", "[", 
+             RowBox[{"rootPoints", "[", 
+              RowBox[{"[", 
+               RowBox[{";;", "i"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"(*", 
+             RowBox[{"showing", " ", "points", " ", "progressively"}], "*)"}],
+             "\[IndentingNewLine]", 
+            RowBox[{"Line", "[", 
+             RowBox[{"rootPoints", "[", 
+              RowBox[{"[", 
+               RowBox[{";;", "i"}], "]"}], "]"}], "]"}]}], " ", 
+           RowBox[{"(*", 
+            RowBox[{"connecting", " ", "points", " ", "progressively"}], 
+            "*)"}], "}"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Axes", "->", "True"}], ",", 
+          RowBox[{"AxesLabel", "->", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Re\>\"", ",", "\"\<Im\>\""}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PlotRange", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "radius"}], "-", "1"}], ",", 
+               RowBox[{"radius", "+", "1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "radius"}], "-", "1"}], ",", 
+               RowBox[{"radius", "+", "1"}]}], "}"}]}], "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PlotLabel", "->", 
+           RowBox[{"\"\<Roots of Order \>\"", "<>", 
+            RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\< of \>\"", "<>", 
+            RowBox[{"ToString", "[", "z", "]"}]}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"AspectRatio", "->", "1"}], ",", 
+          RowBox[{"GridLines", "->", "Automatic"}], ",", 
+          RowBox[{"(*", 
+           RowBox[{"enabling", " ", "grid", " ", "lines"}], "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"Frame", "->", "True"}], ",", 
+          RowBox[{"(*", 
+           RowBox[{
+           "adding", " ", "frame", " ", "around", " ", "the", " ", "plot"}], 
+           "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"FrameLabel", "->", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Re\>\"", ",", "\"\<Im\>\""}], "}"}]}]}], " ", 
+         RowBox[{"(*", 
+          RowBox[{"label", " ", "for", " ", "frame"}], "*)"}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\n", 
+     RowBox[{"(*", 
+      RowBox[{
+      "connecting", " ", "the", " ", "last", " ", "point", " ", "to", " ", 
+       "the", " ", "first", " ", "point", " ", "for", " ", "full", " ", 
+       "polygon"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"frames", ",", 
+       RowBox[{"Graphics", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"Blue", ",", 
+           RowBox[{"Circle", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0"}], "}"}], ",", "radius"}], "]"}], ",", 
+           "\[IndentingNewLine]", "Red", ",", 
+           RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+           RowBox[{"Point", "[", "rootPoints", "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{"showing", " ", "all", " ", "points"}], "*)"}], 
+           "\[IndentingNewLine]", 
+           RowBox[{"Line", "[", 
+            RowBox[{"Join", "[", 
+             RowBox[{"rootPoints", ",", 
+              RowBox[{"{", 
+               RowBox[{"rootPoints", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "}"}]}], "]"}], "]"}]}], " ", 
+          RowBox[{"(*", 
+           RowBox[{"connecting", " ", "last", " ", "to", " ", "first"}], 
+           "*)"}], "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Axes", "->", "True"}], ",", 
+         RowBox[{"AxesLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Re\>\"", ",", "\"\<Im\>\""}], "}"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"PlotRange", "->", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "radius"}], "-", "1"}], ",", 
+              RowBox[{"radius", "+", "1"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "radius"}], "-", "1"}], ",", 
+              RowBox[{"radius", "+", "1"}]}], "}"}]}], "}"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"PlotLabel", "->", 
+          RowBox[{"\"\<Roots of Order \>\"", "<>", 
+           RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\< of \>\"", "<>", 
+           RowBox[{"ToString", "[", "z", "]"}]}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"AspectRatio", "->", "1"}], ",", 
+         RowBox[{"GridLines", "->", "Automatic"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{"enabling", " ", "grid", " ", "lines"}], "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"Frame", "->", "True"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+          "adding", " ", "frame", " ", "around", " ", "the", " ", "plot"}], 
+          "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"FrameLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Re\>\"", ",", "\"\<Im\>\""}], "}"}]}]}], " ", 
+        RowBox[{"(*", 
+         RowBox[{"label", " ", "for", " ", "frame"}], "*)"}], "]"}]}], "]"}], 
+     ";", "\[IndentingNewLine]", "\n", 
+     RowBox[{"(*", " ", 
+      RowBox[{"animating", " ", "the", " ", "frames"}], " ", "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"Manipulate", "[", 
+      RowBox[{
+       RowBox[{"frames", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", 
+         RowBox[{"Length", "[", "frames", "]"}], ",", "1"}], "}"}]}], 
+      "]"}]}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.939111716817316*^9, 3.939111830565378*^9}, {
+   3.9391118663104305`*^9, 3.9391118721613464`*^9}, {3.939111926464569*^9, 
+   3.939111973832329*^9}, {3.9391120934001865`*^9, 3.93911217932045*^9}, 
+   3.9391124973950214`*^9, {3.939112645868128*^9, 3.9391126476414585`*^9}, {
+   3.939112949383032*^9, 3.939112978757883*^9}, 3.9391131433022385`*^9, 
+   3.939113261248064*^9, {3.9391132991434937`*^9, 3.9391132997371063`*^9}, {
+   3.9391133643631935`*^9, 3.9391133795781536`*^9}, {3.939113425341797*^9, 
+   3.939113433281437*^9}, {3.939113490756998*^9, 3.9391135114367867`*^9}, {
+   3.939716683261507*^9, 
+   3.93971684445228*^9}},ExpressionUUID->"bf0fdd70-27be-7b44-94bc-\
+88fb49191a08"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"z", "=", 
+   RowBox[{"23", "+", "I"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"complexRoots", "[", 
+  RowBox[{"z", ",", "6"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.939112519082491*^9, 3.939112527800026*^9}, {
+   3.939112558438999*^9, 3.93911257815209*^9}, {3.9391130202353973`*^9, 
+   3.9391130209805107`*^9}, 3.939113121848179*^9, {3.939113461069044*^9, 
+   3.939113468992012*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"82e0e27b-6db8-e14d-8429-2aaab260bcbd"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`i$$ = 7, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`i$$], 1, 7, 1, ControlType -> Manipulator}}, 
+    Typeset`size$$ = {360., {181.6853572469748, 187.41729105097087`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`i$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Part[$CellContext`frames, $CellContext`i$$], 
+      "Specifications" :> {{$CellContext`i$$, 1, 7, 1}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{407.1, {233.2861970907248, 239.01813089472088`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.9391125290825806`*^9, {3.9391125702032967`*^9, 3.9391125786161137`*^9}, 
+   3.9391126525882053`*^9, 3.93911298400161*^9, 3.93911302159968*^9, 
+   3.939113147381958*^9, {3.9391132638668766`*^9, 3.9391132680485363`*^9}, {
+   3.939113369382015*^9, 3.939113383073616*^9}, {3.9391134386746483`*^9, 
+   3.9391134694262886`*^9}, {3.9397141905062294`*^9, 3.9397142175897026`*^9}},
+ CellLabel->"Out[6]=",ExpressionUUID->"70da56a5-b99b-be4f-9fa1-7cd530369649"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"z", "=", 
+   RowBox[{
+    RowBox[{"-", "19"}], "+", 
+    RowBox[{"16", "*", "I"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"complexRoots", "[", 
+  RowBox[{"z", ",", "10"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9397296862548904`*^9, 3.9397297091078434`*^9}, {
+  3.9397297447453327`*^9, 3.939729794304529*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"2ad5c811-2974-fa41-ba57-c980e19c673a"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`i$$ = 6, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`i$$], 1, 11, 1, ControlType -> Manipulator}}, 
+    Typeset`size$$ = {360., {181.6853572469748, 187.41729105097087`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`i$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Part[$CellContext`frames, $CellContext`i$$], 
+      "Specifications" :> {{$CellContext`i$$, 1, 11, 1}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{407.1, {233.2861970907248, 239.01813089472088`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.939729714121643*^9, 3.939729798369791*^9}},
+ CellLabel->"Out[20]=",ExpressionUUID->"8238dcf8-ae02-6e48-b798-69644a3105fd"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.939111154773123*^9, 3.939111176900509*^9}, {
+   3.939111384607914*^9, 3.9391114217801113`*^9}, {3.939111478365761*^9, 
+   3.939111487193363*^9}, 
+   3.9391117852450943`*^9},ExpressionUUID->"ed7e893b-9df5-6e4b-a42a-\
+32a22d2d8997"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.9391111803799496`*^9, 3.9391111914738503`*^9}, 
+   3.9391117965145893`*^9},ExpressionUUID->"af76f4f4-b885-bd44-916d-\
+cf66deda35c4"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.939111193977112*^9, 3.9391112744304657`*^9}, 
+   3.939111806685169*^9},ExpressionUUID->"3c85af4a-6f33-a048-a778-\
+1500236f4496"]
+}, Open  ]]
+},
+WindowSize->{718.5, 735.75},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"144656ae-c551-c344-baf1-ed255f87279e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 254, 5, 134, "Title",ExpressionUUID->"e286ff35-16cf-e84c-b0ee-dbd39c222cca"],
+Cell[833, 29, 321, 10, 68, "Subtitle",ExpressionUUID->"ef8d7383-78a7-e14e-bafb-32bf9687c682"],
+Cell[1157, 41, 170, 3, 52, "Subtitle",ExpressionUUID->"73ef0854-bc84-7042-a645-006315ce4af7"],
+Cell[1330, 46, 220, 3, 28, "Input",ExpressionUUID->"890c2c28-398d-864c-bbfe-8b1a1ce9a577"],
+Cell[1553, 51, 9561, 223, 903, "Input",ExpressionUUID->"bf0fdd70-27be-7b44-94bc-88fb49191a08"],
+Cell[CellGroupData[{
+Cell[11139, 278, 502, 10, 47, "Input",ExpressionUUID->"82e0e27b-6db8-e14d-8429-2aaab260bcbd"],
+Cell[11644, 290, 2146, 40, 489, "Output",ExpressionUUID->"70da56a5-b99b-be4f-9fa1-7cd530369649"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13827, 335, 430, 10, 47, "Input",ExpressionUUID->"2ad5c811-2974-fa41-ba57-c980e19c673a"],
+Cell[14260, 347, 1818, 35, 489, "Output",ExpressionUUID->"8238dcf8-ae02-6e48-b798-69644a3105fd"]
+}, Open  ]],
+Cell[16093, 385, 279, 5, 28, "Input",ExpressionUUID->"ed7e893b-9df5-6e4b-a42a-32a22d2d8997"],
+Cell[16375, 392, 181, 3, 28, "Input",ExpressionUUID->"af76f4f4-b885-bd44-916d-cf66deda35c4"],
+Cell[16559, 397, 177, 3, 28, "Input",ExpressionUUID->"3c85af4a-6f33-a048-a778-1500236f4496"]
+}, Open  ]]
+}
+]
+*)
+
